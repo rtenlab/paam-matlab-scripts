@@ -1,7 +1,7 @@
 %% Fixed utilization, callbacks per chains, varying number of chains per chainset
 clear all;
 clc;
-trials = 50;
+trials = 100;
 num_chains = 4;
 num_callbacks = 4;
 cpu_util = 0.1;
@@ -69,7 +69,7 @@ fontsize(gcf,14,"points")
 %% Varying percentage of gpu execution time
 clear all;
 clc;
-trials = 50;
+trials = 100;
 num_chains = 4;
 num_callbacks = 4;
 cpu_util = 0.1;
