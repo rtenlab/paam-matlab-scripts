@@ -72,11 +72,11 @@ for (i = 1:height(grouporder))
         grouporder.Var1(i) = categorical("Direct Invocation");
     elseif contains(string(grouporder.Var1(i)),"di_picas")
         grouporder.Var1(i) = categorical("PiCAS");
-    elseif contains(string(grouporder.Var1(i)),"aamf")
-        grouporder.Var1(i) = categorical("AAMF");
+    elseif contains(string(grouporder.Var1(i)),"paam")
+        grouporder.Var1(i) = categorical("PAAM");
     end
 end
-grouporder = table(categorical(grouporder.Var1, {'Direct Invocation', 'PiCAS', 'AAMF'}));
+grouporder = table(categorical(grouporder.Var1, {'Direct Invocation', 'PiCAS', 'PAAM'}));
 executor.Var1 = categorical(executor.Var1, {'4xST', 'MT'});
 
 figure();
@@ -85,7 +85,7 @@ hold on;
 %h2 = boxchart(executor.Var1(executor.Var1 == categorical({'Singlethreaded'})), latency_table.data(executor.Var1 == categorical({'Singlethreaded'}), :), 'GroupByColor', grouporder.Var1(executor.Var1 == categorical({'Singlethreaded'})));
 b = boxchart(executor.Var1(:), latency_table.data(:), 'GroupbyColor', grouporder.Var1(:), 'MarkerStyle', 'o', 'BoxFaceAlpha', 0.4, 'LineWidth', 0.5, 'MarkerSize', 4);
 fontsize(7, 'points')
-lgd = legend(["ROS 2", "PiCAS", "AAMF"])
+lgd = legend(["ROS 2", "PiCAS", "PAAM"])
 ylabel("Hot Path Latency (ms in logscale)")
 grid minor
 set(gca, 'YScale', 'log')
@@ -129,11 +129,11 @@ for (i = 1:height(grouporder))
         grouporder.Var1(i) = categorical("Direct Invocation");
     elseif contains(string(grouporder.Var1(i)),"di_picas")
         grouporder.Var1(i) = categorical("PiCAS");
-    elseif contains(string(grouporder.Var1(i)),"aamf")
-        grouporder.Var1(i) = categorical("AAMF");
+    elseif contains(string(grouporder.Var1(i)),"paam")
+        grouporder.Var1(i) = categorical("PAAM");
     end
 end
-grouporder = table(categorical(grouporder.Var1, {'Direct Invocation', 'PiCAS', 'AAMF'}));
+grouporder = table(categorical(grouporder.Var1, {'Direct Invocation', 'PiCAS', 'PAAM'}));
 %executor.Var1 = categorical(executor.Var1, {'Multithreaded', 'Singlethreaded'});
 executor.Var1 = categorical(executor.Var1, {'4xST', 'MT'});
 figure();
@@ -142,7 +142,7 @@ hold on;
 %h2 = boxchart(executor.Var1(executor.Var1 == categorical({'Singlethreaded'})), period_table.data(executor.Var1 == categorical({'Singlethreaded'}), :), 'GroupByColor', grouporder.Var1(executor.Var1 == categorical({'Singlethreaded'})));
 b = boxchart(executor.Var1(:), period_table.data(:), 'GroupbyColor', grouporder.Var1(:), 'MarkerStyle', 'o', 'BoxFaceAlpha', 0.4, 'LineWidth', 0.5, 'MarkerSize', 4);
 fontsize(14, 'points')
-legend(["ROS 2", "PiCAS", "AAMF"])
+legend(["ROS 2", "PiCAS", "PAAM"])
 ylabel("Period (ms)")
 grid minor
 ylim([0, 300])
@@ -184,11 +184,11 @@ for (i = 1:height(grouporder))
         grouporder.Var1(i) = categorical("Direct Invocation");
     elseif contains(string(grouporder.Var1(i)),"di_picas")
         grouporder.Var1(i) = categorical("PiCAS");
-    elseif contains(string(grouporder.Var1(i)),"aamf")
-        grouporder.Var1(i) = categorical("AAMF");
+    elseif contains(string(grouporder.Var1(i)),"paam")
+        grouporder.Var1(i) = categorical("PAAM");
     end
 end
-grouporder = table(categorical(grouporder.Var1, {'Direct Invocation', 'PiCAS', 'AAMF'}));
+grouporder = table(categorical(grouporder.Var1, {'Direct Invocation', 'PiCAS', 'PAAM'}));
 %executor.Var1 = categorical(executor.Var1, {'Multithreaded', 'Singlethreaded'});
 executor.Var1 = categorical(executor.Var1, {'4xST', 'MT'});
 figure();
@@ -197,7 +197,7 @@ hold on;
 %h2 = boxchart(executor.Var1(executor.Var1 == categorical({'Singlethreaded'})), drops_table.data(executor.Var1 == categorical({'Singlethreaded'}), :), 'GroupByColor', grouporder.Var1(executor.Var1 == categorical({'Singlethreaded'})));
 b = boxchart(executor.Var1(:), drops_table.data(:), 'GroupbyColor', grouporder.Var1(:), 'MarkerStyle', 'o', 'BoxFaceAlpha', 0.4, 'LineWidth', 0.5, 'MarkerSize', 4);
 fontsize(14, 'points')
-legend(["ROS 2", "PiCAS", "AAMF"])
+legend(["ROS 2", "PiCAS", "PAAM"])
 ylabel("Drops")
 grid minor
 ylim([0, 5])

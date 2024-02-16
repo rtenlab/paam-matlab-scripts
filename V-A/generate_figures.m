@@ -13,7 +13,7 @@ paam_chain_history_mb = cell(1,1);
 direct_chain_history = cell(1,1);
 direct_chain_history_np = cell(1,1);
 
-for i = 1:length(paam_files)
+for i = 1:length(paam_files_mb)
 
     paam_chain_mb = importfile(paam_files_mb(i));
     paam_chain_latency_mb(i) = mean(table2array(paam_chain_mb(:,2)));
