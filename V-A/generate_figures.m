@@ -16,46 +16,47 @@ direct_chain_history_np = cell(1,1);
 for i = 1:length(paam_files_mb)
 
     paam_chain_mb = importfile(paam_files_mb(i));
+    paam_chain_mb = paam_chain_mb(100:end, :);
     paam_chain_latency_mb(i) = mean(table2array(paam_chain_mb(:,2)));
     paam_chain_latency_99_mb(i) = prctile(table2array(paam_chain_mb(:,2)),99);
     paam_chain_history_mb(i) = {paam_chain_mb};
     
     direct_chain = importfile(direct_files(i));
+    direct_chain = direct_chain(100:end, :);
     direct_chain_latency(i) = mean(table2array(direct_chain(:,2)));
     direct_chain_latency_99(i) = prctile(table2array(direct_chain(:,2)),99);
     direct_chain_history(i) = {direct_chain};
     
     no_picas_chain = importfile(np_direct_files(i));
+    no_picas_chain = no_picas_chain(100:end, :);
     no_picas_chain_latency(i) = mean(table2array(no_picas_chain(:,2)));
     no_picas_chain_latency_99(i) = prctile(table2array(no_picas_chain(:,2)),99);
     direct_chain_history_np(i) = {no_picas_chain};
 end
 
-% multiple buckets: 
-% see the last column; chains 1 & 2 share the same bucket 0
-data = [120 2 10 120 1 1 98 2 1 0;
-          0 6 10   0 1 2 99 2 1 0; 
-        120 2 10 120 2 1 95 3 2 0;
-          0 8 10   0 2 2 96 3 2 0;
-          0 9 10   0 2 3 97 3 2 0;
-        220 6 10 220 3 1 91 4 3 1;
-          0 8 10   0 3 2 92 4 3 1;
-          0 4 10   0 3 3 93 4 3 1;
-          0 8 10   0 3 4 94 4 3 1;
-        260 5 10 260 4 1 88 5 4 2;
-          0 7 10   0 4 2 89 5 4 2;
-          0 2 10   0 4 3 90 5 4 2;
-        320 2 10 320 5 1 85 6 5 3;
-          0 1 10   0 5 2 86 6 5 3;
-          0 7 10   0 5 3 87 6 5 3;
-        360 2 10 360 6 1 83 7 6 4;
-          0 7 10   0 6 2 84 7 6 4;
-        120 2 10 120 7 1  0 6 7 5
-          0 6 10   0 7 2  0 6 7 5
-        220 6 10 220 8 1  0 7 8 5
-          0 8 10   0 8 2  0 7 8 5
-          0 4 10   0 8 3  0 7 8 5
-          0 8 10   0 8 4  0 7 8 5
+data = [120 2 12.5 120 1 1 98 2 1 0;
+          0 6 12.5   0 1 2 99 2 1 0; 
+        120 2 12.5 120 2 1 95 3 2 0;
+          0 8 12.5   0 2 2 96 3 2 0;
+          0 9 12.5   0 2 3 97 3 2 0;
+        220 6 12.5 220 3 1 91 4 3 1;
+          0 8 12.5   0 3 2 92 4 3 1;
+          0 4 12.5   0 3 3 93 4 3 1;
+          0 8 12.5   0 3 4 94 4 3 1;
+        260 5 12.5 260 4 1 88 5 4 2;
+          0 7 12.5   0 4 2 89 5 4 2;
+          0 2 12.5   0 4 3 90 5 4 2;
+        360 2 12.5 360 5 1 85 6 5 3;
+          0 1 12.5   0 5 2 86 6 5 3;
+          0 7 12.5   0 5 3 87 6 5 3;
+        400 2 12.5 400 6 1 83 7 6 4;
+          0 7 12.5   0 6 2 84 7 6 4;
+        120 2 12.5 120 7 1  0 6 7 5
+          0 6 12.5   0 7 2  0 6 7 5
+        220 6 12.5 220 8 1  0 7 8 5
+          0 8 12.5   0 8 2  0 7 8 5
+          0 4 12.5   0 8 3  0 7 8 5
+          0 8 12.5   0 8 4  0 7 8 5
     ];
 
 num_executors = max(data(:,9));
