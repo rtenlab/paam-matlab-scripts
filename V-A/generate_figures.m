@@ -16,21 +16,16 @@ direct_chain_history_np = cell(1,1);
 for i = 1:length(paam_files)
 
     paam_chain_mb = importfile(paam_files_mb(i));
-    paam_chain_mb = paam_chain_mb(table2array(filloutliers(paam_chain_mb(:,2), 0) == paam_chain_mb(:,2)), :);
     paam_chain_latency_mb(i) = mean(table2array(paam_chain_mb(:,2)));
     paam_chain_latency_99_mb(i) = prctile(table2array(paam_chain_mb(:,2)),99);
     paam_chain_history_mb(i) = {paam_chain_mb};
     
     direct_chain = importfile(direct_files(i));
-    direct_chain = direct_chain(table2array(filloutliers(direct_chain(:,2), 0) == direct_chain(:,2)), :);
-
     direct_chain_latency(i) = mean(table2array(direct_chain(:,2)));
     direct_chain_latency_99(i) = prctile(table2array(direct_chain(:,2)),99);
     direct_chain_history(i) = {direct_chain};
     
     no_picas_chain = importfile(np_direct_files(i));
-    no_picas_chain = no_picas_chain(table2array(filloutliers(no_picas_chain(:,2), 0) == no_picas_chain(:,2)), :);
-
     no_picas_chain_latency(i) = mean(table2array(no_picas_chain(:,2)));
     no_picas_chain_latency_99(i) = prctile(table2array(no_picas_chain(:,2)),99);
     direct_chain_history_np(i) = {no_picas_chain};
