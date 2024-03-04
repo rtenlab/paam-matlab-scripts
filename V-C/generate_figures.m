@@ -45,7 +45,7 @@ lgd.NumColumns = 3;
 
 %title("PAAM Overhead Breakdown")
 grid minor;
-ylim([0, 520])
+ylim([0, 650])
 fontsize(gcf,14,"points")
 
 fontsize(gcf,12,"points");
@@ -67,3 +67,27 @@ set(gcf,'Position',[0 0 fig_width fig_height]);
 screenposition = get(gcf,'Position')
 set(gcf,'PaperPosition',[0 0 screenposition(3:4)],'PaperSize',[screenposition(3:4)])
 print -dpdf -painters overhead
+
+
+%% Preemption Delay
+
+hist_data = importfile1("hist.csv");
+sgemm_data = importfile1("sgemm.csv");
+reduction_data = importfile1("reduction.csv");
+vec_add_data = importfile1("vec_add.csv");
+
+filtered_hist = hist_data(hist_data >= 0);
+filtered_sgemm = sgemm_data(sgemm_data > 0);
+filtered_reduction = reduction_data(reduction_data > 0);
+filtered_vec_add = vec_add_data(vec_add_data > 0);
+
+hist_stats = [mean(filtered_hist); max(filtered_hist); std(filtered_hist)];
+sgemm_stats = [mean(filtered_sgemm); max(filtered_sgemm); std(filtered_sgemm)];
+reduction_stats = [mean(filtered_reduction); max(filtered_reduction); std(filtered_reduction)];
+vec_add_stats = [mean(filtered_vec_add); max(filtered_vec_add); std(filtered_vec_add)];
+
+vars = ["Histogram","GEMM","Reduction","Vec Add"];
+combined_stats = [hist_stats, sgemm_stats, reduction_stats, vec_add_stats]*1000;
+t1 = array2table(combined_stats, "RowNames", ["Average (us)","Max (us)", "Stdev (us)"], "VariableNames",vars);
+fig = uifigure;
+uit = uitable(fig, "Data", t1 );
