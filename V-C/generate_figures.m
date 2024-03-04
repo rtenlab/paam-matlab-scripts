@@ -10,6 +10,8 @@ queueing = [];
 worker = [];
 popping = [];
 awakening = [];
+data = data(1+50*6:(end-36), :);
+
 for i = 1:height(data)
     total = total + data.time(i);
     if(mod(i, 6) == 1)
